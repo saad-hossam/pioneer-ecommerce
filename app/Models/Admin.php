@@ -2,14 +2,37 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Database\Factories\UserFactory;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\Hidden;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Admin extends Model
+use App\Models\Wishlist;
+#[Fillable([
+    'name',
+    'email',
+    'password',
+    'role_id',
+
+])]
+#[Hidden([
+    'password',
+    'remember_token'
+])]
+class Admin extends Authenticatable
 {
-    protected $guarded = [];
+    use HasFactory, Notifiable;
 
-    public function role()
+
+
+    protected function casts(): array
     {
-        return $this->belongsTo(Role::class);
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+            'status' => 'boolean',
+        ];
     }
 }
