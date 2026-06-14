@@ -25,6 +25,7 @@ class AdminRequest extends FormRequest
         return [
             'email' => ['required', 'email'],
             'password' => ['required', 'string', 'max:30'],
+            'g-recaptcha-response' => ['required']
         ];
     }
 }

@@ -62,9 +62,23 @@
                                                     </fieldset>
                                                 </div>
                                                 <div class="col-md-6 col-12 text-center text-md-right"><a
-                                                        href="recover-password.html"
+                                                        href="{{ route('dashboard.password.email') }}"
                                                         class="card-link">{{ __('auth.forgot_password') }}</a></div>
                                             </div>
+
+                                            <div class="col-md-6 col-12 text-center mb-2 text-md-right">
+                                              {!! NoCaptcha::display() !!}
+
+
+                                            </div>
+                                              @error('g-recaptcha-response')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+
+
+
+
+
                                             <button type="submit" class="btn btn-danger btn-block btn-lg"><i
                                                     class="ft-unlock"></i> {{ __('auth.login') }}</button>
                                         </form>
